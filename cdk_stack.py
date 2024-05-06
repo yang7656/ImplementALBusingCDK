@@ -70,8 +70,12 @@ class CdkStack(Stack):
         lb = elbv2.ApplicationLoadBalancer(self, "EngineeringLB",
                                            vpc=vpc,
                                            internet_facing=True,
-                                           load_balancer_name="EngineeringLB"
-                                          )
+                                           load_balancer_name="EngineeringLB",
+                                           vpc_subnets=ec2.SubnetSelection(
+                                               subnets=[
+                                                   vpc.public_subnets[0],
+                                                   vpc.public_subnets[1]
+                                               ]))
                                            
         listener = lb.add_listener("Listener", port=80, open=True)
         listener.add_targets("Target",
