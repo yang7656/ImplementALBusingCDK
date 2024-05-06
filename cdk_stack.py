@@ -71,4 +71,4 @@ class CdkStack(Stack):
                                       elbv2_targets.InstanceTarget(instance2, port=80)])
         
         # Output
-        CfnOutput(self, "LoadBalancerDNS", value=lb.load_balancer_dns_name)
+        CfnOutput(self, "WebUrl", value=lb.load_balancer_dns_name)
